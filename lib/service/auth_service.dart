@@ -7,6 +7,8 @@ class AuthService {
     final existing  =  await storage.read(key: email);
     if(existing != null) return false;// Cas ou l'email existe
     await storage.write(key: email, value: password) ;
+    await storage.write(key: "token", value: "fake_token") ;
+    await storage.write(key: "email", value: email) ;
     return true ;
   }
   Future<String?> login (String email, String password) async {

@@ -1,4 +1,5 @@
 import 'package:first_app/pages/home.dart';
+import 'package:first_app/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:first_app/service/auth_service.dart';
 
@@ -24,6 +25,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
         return Home();
       }));
+    } else {
+       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("L'utilisateur existe déjà !")));
     }
   }
   @override
@@ -164,7 +167,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton(
-                    onPressed: (){},
+                    onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginApp()));
+                    },
                     style: OutlinedButton.styleFrom(
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
