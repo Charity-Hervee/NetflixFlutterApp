@@ -1,4 +1,5 @@
 
+import 'package:first_app/pages/home.dart';
 import 'package:first_app/pages/register.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,15 @@ class _LoginAppState extends State<LoginApp> {
   Future<void> login() async {
     
     final ok = await auth.login(emailController.text, passwordController.text);
+    if(ok != null){
+        // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Utilisateur créer avec succès !")));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+        return Home();
+      }));
+    } else {
+       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("L'utilisateur n'existe pas !")));
+    }
+
   }
 
   @override
@@ -114,6 +124,7 @@ class _LoginAppState extends State<LoginApp> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
                 },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,

@@ -20,7 +20,7 @@ class AuthService {
     }
      return null;
     }
-  Future<void> logout (String email, String password) async {
+  Future<void> logout (String email) async {
       await storage.delete(key: "token") ;
       await storage.delete(key: email) ;
     }

@@ -14,10 +14,16 @@ class _RedirectionPageState extends State<RedirectionPage> {
   final storage = const FlutterSecureStorage();
   bool loading  = true;
   bool logged = false;
+  @override
+  void initState() {
+    super.initState();
+    checkSection();
+    
+  }
   Future<void> checkSection() async {
-    final token = storage.read(key:"Token");
+    final token = await storage.read(key:"Token");
     setState(() {
-      logged = token == token;
+      logged = token != null;
       loading = false;
     });
   }
